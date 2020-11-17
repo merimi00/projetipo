@@ -17,11 +17,11 @@ public class Frog implements IFrog {
 	}
 
 	public Case getPosition() {
-		return pos;
+		return this.pos;
 	}
 
 	public Direction getDirection() {
-		return dir;
+		return this.dir;
 	}
 
 	public void move(Direction key) {
