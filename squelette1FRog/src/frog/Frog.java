@@ -10,32 +10,44 @@ public class Frog implements IFrog {
 	private Case pos;
 	private Direction dir;
 
-	//constructeur
-	public Frog(){
-
+	public Frog(Game game){
+		this.pos = new Case(0,0);
+		this.dir = Direction.up;
+		this.game = game;
 	}
 
-
-	/**
-	 * Donne la position actuelle de la grenouille
-	 * @return
-	 */
-	public Case getPosition(){
-		return this.pos;
-
+	public Case getPosition() {
+		return pos;
 	}
-	/**
-	 * Donne la direction de la grenouille, c'est � dire de son dernier mouvement
-	 * @return
-	 */
-	public Direction getDirection(){
-		return this.dir;
+
+	public Direction getDirection() {
+		return dir;
 	}
-	/**
-	 * D�place la grenouille dans la direction donn�e et teste la fin de partie
-	 * @param key
-	 */
-	public void move(Direction key){
+
+	public void move(Direction key) {
+		if (key == Direction.up) {
+			if (this.pos.ord < 19) {
+				this.pos = new Case(this.pos.absc, this.pos.ord + 1);
+			}
+		}
+
+		if (key == Direction.down){
+			if (this.pos.ord > 0) {
+				this.pos = new Case(this.pos.absc, this.pos.ord - 1);
+			}
+		}
+		if (key == Direction.right) {
+			if (this.pos.absc < 25) {
+				this.pos = new Case(this.pos.absc + 1, this.pos.ord);
+			}
+		}
+		if (key == Direction.left){
+			if (this.pos.absc > 0) {
+				this.pos = new Case(this.pos.absc - 1, this.pos.ord);
+			}
+		}
+
+
 
 	}
 

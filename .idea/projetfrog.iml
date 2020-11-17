@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/givenEnvironment.jar!/" />
+          <root url="jar://$MODULE_DIR$/squelette1FRog/givenEnvironment .jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
