@@ -5,6 +5,7 @@ import java.util.Random;
 
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
+import util.Case;
 
 public class Game {
 
@@ -70,8 +71,8 @@ public class Game {
 	}
 
 	/**
-	 * Teste si la partie est perdue et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est perdue
+	 * et lance un �cran de fin appropri� si tel est le cas
 	 * 
 	 * @return true si le partie est perdue
 	 */
@@ -80,12 +81,12 @@ public class Game {
 			graphic.endGameScreen("Defeat");
 			return true;
 		}
-		return false;
+		return this.environment.isSafe(this.frog.getPosition());
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel
-	 * est le cas
+	 * Teste si la partie est gagnee
+	 * et lance un �cran de fin appropri� si tel est le cas
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
@@ -94,7 +95,8 @@ public class Game {
 			graphic.endGameScreen("Victory");
 			return true;
 		}
-		return false;
+		return this.environment.isWinningPosition(this.frog.getPosition());
+
 	}
 
 	/**
