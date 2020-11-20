@@ -1,6 +1,7 @@
 package environment;
 
 import java.util.ArrayList;
+import javax.swing.Timer;
 
 import util.Case;
 import gameCommons.Game;
@@ -14,24 +15,39 @@ public class Lane {
 	private double density;
 
 	// TODO : Constructeur(s)
+	//game, sens, vitesse, numero de route,
+	public Lane(Game g, boolean b, int s, int i, double d){
+		this.game = g;
+		this.ord = i;
+		this.speed = s;
+		for (int j =0;j<d;j++){this.cars.add(new Car(g, b));}
+		this.leftToRight = b;
+		this.density = d;
+	}
+	public Lane(){
+
+	}
 
 	public void update() {
 
 		// TODO
-
-		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic tac" d'horloge" �gal � leur vitesse
+		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic
+		// d'horloge" �gal � leur vitesse
 		// Notez que cette m�thode est appel�e � chaque tic d'horloge
-
-		// Les voitures doivent etre ajoutes a l interface graphique meme quand elle ne bougent pas
+		Timer timer = new Timer(this.speed, this.mayAddCar());
+		timer.start();
+		// Les voitures doivent etre ajoutes a l interface graphique meme quand
+		// elle ne bougent pas
 
 		// A chaque tic d'horloge, une voiture peut �tre ajout�e
 
 	}
 
 	// TODO : ajout de methodes
+	public void addLane(){}
 
 	/*
-	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase() 
+	 * Fourni : mayAddCar(), getFirstCase() et getBeforeFirstCase()
 	 */
 
 	/**

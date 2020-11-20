@@ -6,7 +6,6 @@ import java.util.Random;
 import util.Case;
 import gameCommons.Game;
 import graphicalElements.Element;
-import util.Direction;
 
 public class Car {
 	private Game game;
@@ -44,8 +43,14 @@ public class Car {
 	public Case carMove(Case c){
 		return this.leftPosition = c;
 	}
-	
-	
+	public Case carMove(){
+		if(this.leftToRight){
+			return this.leftPosition = new Case(this.leftPosition.absc+1,this.leftPosition.ord);
+		}else{return this.leftPosition = new Case(this.leftPosition.absc -1,this.leftPosition.ord);}
+	}
+
+
+
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	private void addToGraphics() {
 		for (int i = 0; i < length; i++) {
@@ -53,7 +58,8 @@ public class Car {
 			if (this.leftToRight){
 				color = colorLtR;
 			}
-			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
+			game.getGraphic()
+					.add(new Element(leftPosition.absc + i, leftPosition.ord, color));
 		}
 	}
 

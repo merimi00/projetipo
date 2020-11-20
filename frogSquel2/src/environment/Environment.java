@@ -1,17 +1,27 @@
 package environment;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import gameCommons.Case;
+import util.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
-import util.Case;
 
 public class Environment implements IEnvironment {
-		
-	//TODO
+    //TODO
     //variables
+    private Game game;
+    private ArrayList<Lane> lanes = new ArrayList<>();
+    private boolean leftToRight;
+    private double density;
     //constructor
+    public Environment(Game g){
+        this.game = g;
+        Random r = new Random();
+        int i =  r.nextInt(2);
+        if(i%2 == 0){this.leftToRight=true;i++;}else{this.leftToRight=false;i++;}
+        this.density = r.nextDouble();
+    }
     //methods
     /**
      * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
@@ -22,7 +32,7 @@ public class Environment implements IEnvironment {
      * @return vrai s'il n'y a pas danger
      */
     public boolean isSafe(Case c){
-
+        return true;
     }
 
     /**
@@ -32,7 +42,7 @@ public class Environment implements IEnvironment {
      * @return vrai si la case est une case de victoire
      */
     public boolean isWinningPosition(Case c){
-
+        return true;
     }
 
     /**
@@ -41,5 +51,6 @@ public class Environment implements IEnvironment {
     public void update(){
 
     }
+
 
 }
