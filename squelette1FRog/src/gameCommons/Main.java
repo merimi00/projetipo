@@ -33,6 +33,9 @@ public class Main {
 		//Cr�ation et liaison de l'environnement
 		IEnvironment env = new GivenEnvironment(game);
 		game.setEnvironment(env);
+		/*OU
+		//Creation et liaison de l'environnement
+		IEnvironment env = new Environment(game);*/
 				
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
 		Timer timer = new Timer(tempo, new ActionListener() {
