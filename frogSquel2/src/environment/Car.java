@@ -1,7 +1,6 @@
 package environment;
 
 import java.awt.Color;
-import java.util.Random;
 
 import util.Case;
 import gameCommons.Game;
@@ -16,43 +15,43 @@ public class Car {
 	private final Color colorRtL = Color.BLUE;
 
 	//TODO Constructeur(s)
-	public Car(Game game, boolean sens){
+	public Car(Game game, Case pos, boolean lTR){
+		this.leftPosition = pos ;
+		this.leftToRight = lTR;
+		this.length = game.randomGen.nextInt(4);
 		this.game = game;
-		this.leftPosition = new Case(0,0);
-		this.leftToRight = sens;
-		Random r = new Random();
-		this.length =  r.nextInt( 4);
-
-	}
-	public Car(Game game, int len, boolean sens){
-		this.game = game;
-		this.leftPosition = new Case(0,0);
-		this.leftToRight = sens;
-		this.length = len;
-	}
-	public Car(Game game, Case c, boolean sens){
-		this.game = game;
-		this.leftPosition = c;
-		this.leftToRight = sens;
-		Random r = new Random();
-		this.length =  r.nextInt( 4);
-
 	}
 
 	//TODO : ajout de methodes
-	public Case carMove(Case c){
-		return this.leftPosition = c;
-	}
-	public Case carMove(){
-		if(this.leftToRight){
-			return this.leftPosition = new Case(this.leftPosition.absc+1,this.leftPosition.ord);
-		}else{return this.leftPosition = new Case(this.leftPosition.absc -1,this.leftPosition.ord);}
+
+	/**
+	 * Fait avancer un véhicule d'une case en fonction de leftToRight
+	 */
+	public void avanceCar(){
+		if (leftToRight){
+			this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
+		} else {
+			this.leftPosition = new Case(this.leftPosition.absc - 1, this.leftPosition.ord);
+		}
 	}
 
+	/**
+	 * Compare une case c avec toutes les cases occupées par le véhicule
+	 * @param c la case à comparer
+	 * @return true si la case c est occupée par le véhicule, false sinon
+	 */
+	public boolean comparePosCar(Case c){
+		for (int i = 0; i < this.length; i++){
+			if (leftPosition.absc + i == c.absc){
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
-	private void addToGraphics() {
+	public void addToGraphics() {
 		for (int i = 0; i < length; i++) {
 			Color color = colorRtL;
 			if (this.leftToRight){
