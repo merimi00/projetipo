@@ -6,8 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import environment.Environment;
 import frog.Frog;
-import  givenEnvironment.GivenEnvironment;
+import givenEnvironment.GivenEnvironment;
 import graphicalElements.IFroggerGraphics;
 import graphicalElements.FroggerGraphic;
 
@@ -20,7 +21,7 @@ public class Main {
 		int height = 20;
 		int tempo = 100;
 		int minSpeedInTimerLoops = 3;
-		double defaultDensity = 0.2;
+		double defaultDensity = 0.1;
 		
 		//Cr�ation de l'interface graphique
 		IFroggerGraphics graphic = new FroggerGraphic(width, height);
@@ -31,11 +32,10 @@ public class Main {
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
-		IEnvironment env = new GivenEnvironment(game);
+		//IEnvironment env = new GivenEnvironment(game);
+		IEnvironment env = new Environment(game);
 		game.setEnvironment(env);
-		/*OU
-		//Creation et liaison de l'environnement
-		IEnvironment env = new Environment(game);*/
+
 				
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
 		Timer timer = new Timer(tempo, new ActionListener() {
