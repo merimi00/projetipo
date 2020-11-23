@@ -20,6 +20,23 @@ public class Car {
 		this.leftToRight = lTR;
 		this.length = game.randomGen.nextInt(4);
 		this.game = game;
+		addToGraphics();
+	}
+
+	public Car (Game game, boolean lTR, int i){
+		this.leftToRight = lTR;
+		this.game = game;
+		int l;
+		do {
+			l = game.randomGen.nextInt(4);
+		} while (l != 0);
+		this.length = l;
+		Case c;
+		do {
+			c = new Case(game.randomGen.nextInt(this.game.width), i);
+		} while (comparePosCar(c));
+		this.leftPosition = c;
+		addToGraphics();
 	}
 
 	//TODO : ajout de methodes

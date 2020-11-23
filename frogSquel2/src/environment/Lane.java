@@ -23,21 +23,20 @@ public class Lane {
 		this.leftToRight = game.randomGen.nextBoolean();
 		this.density = game.defaultDensity;
 		this.timer = 0;
+		for (int j = 0;j < this.density; j++){this.cars.add(new Car(this.game, this.leftToRight, this.ord));}
 	}
-
-
 
 	public void update() {
 		mayAddCar();
-		if (timer == speed){
+		if (this.timer == this.speed){
 			for (Car car : cars) {
 				car.avanceCar();
-				timer = 0;
+				this.timer = 0;
 			}
 		} else {
-			timer ++;
+			this.timer ++;
 		}
-		for (Car car : cars) {
+		for (Car car : this.cars) {
 			car.addToGraphics();
 		}
 
@@ -67,8 +66,8 @@ public class Lane {
 	 */
 	private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
-			if (game.randomGen.nextDouble() < density) {
-				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
+			if (game.randomGen.nextDouble() < this.density) {
+				this.cars.add(new Car(this.game, getBeforeFirstCase(), this.leftToRight));
 			}
 		}
 	}
@@ -78,8 +77,8 @@ public class Lane {
 	 * @param c la case à tester
 	 * @return true si elle est safe, false sinon
 	 */
-	private boolean isSafe(Case c) {
-		for (int j = 0; j < this.cars.size()){
+	public boolean isSafe(Case c) {
+		for (int j = 0; j < this.cars.size(); j++){
 			if (this.cars.get(j).comparePosCar(c)){
 				return false;
 			}

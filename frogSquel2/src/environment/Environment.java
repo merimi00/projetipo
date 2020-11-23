@@ -7,39 +7,35 @@ import gameCommons.Game;
 import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
-    private ArrayList<Lane> road;
+    private ArrayList<Lane> road = new ArrayList<>(20);
     private Game game;
 
 
     public Environment (Game g){
         this.game = g;
-        this.road = new ArrayList<>(this.game.height);
-        for (int i = 0; i < road.size(); i++){
-            this.road.get(i) = new Lane(this.game,i, speed);
-            //je sais pas trop comment faire pour la vitesse
+        for (int i = 0; i < this.game.height; i++){
+            this.road.add(i, new Lane(g, i, ((int) (Math.random() * (10 - this.game.minSpeedInTimerLoops)) + this.game.minSpeedInTimerLoops)));
         }
     }
 
 
+
     public boolean isSafe(Case c) {
         for (int i = 0; i < road.size(); i++){
-            isSafe(c);
+            road.get(i).isSafe(c);
         }
         return true;
     }
 
     @Override
     public boolean isWinningPosition(Case c) {
-        if (c.ord == this.game.height - 1){
-            return true;
-        }
-        return false;
+        return c.ord == this.game.height - 1;
     }
 
 
     public void update() {
-        for (int i = 0; i < this.road.size(); i++){
-            this.road.get(i).update();
+        for (Lane lane : this.road) {
+            lane.update();
         }
     }
 
