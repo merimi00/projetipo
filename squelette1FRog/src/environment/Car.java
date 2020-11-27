@@ -38,7 +38,7 @@ public class Car {
 		this.leftPosition = c;
 		this.leftToRight = sens;
 		Random r = new Random();
-		this.length =  r.nextInt( 3);
+		this.length =  r.nextInt( 4);
 		addToGraphics();
 	}
 

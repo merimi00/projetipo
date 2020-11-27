@@ -11,9 +11,10 @@ public class Frog implements IFrog {
 	private Direction dir;
 
 	public Frog(Game game){
-		this.pos = new Case(0,0);
 		this.dir = Direction.up;
-		this.game = game; }
+		this.game = game;
+		this.pos = new Case((this.game.width/2),0);
+	}
 	public Case getPosition() {return this.pos;}
 	public Direction getDirection() {
 		return this.dir;

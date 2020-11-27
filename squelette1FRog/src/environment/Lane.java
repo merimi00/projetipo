@@ -24,7 +24,7 @@ public class Lane {
 		this.game = g;
 		this.ord = ordonee;
 		Random r = new Random();
-		this.speed = r.nextInt(10);//this.game.minSpeedInTimerLoops);
+		this.speed = r.nextInt(10)+3;//this.game.minSpeedInTimerLoops);
 		this.leftToRight = r.nextBoolean();
 		this.density = this.game.defaultDensity;
 		int i =0;
