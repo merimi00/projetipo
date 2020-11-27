@@ -3,9 +3,11 @@ package gameCommons;
 import java.awt.Color;
 import java.util.Random;
 
+import frog.IFrog;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 import util.Case;
+import util.Direction;
 
 public class Game {
 
@@ -46,12 +48,15 @@ public class Game {
 
 	/**
 	 * Lie l'objet frog � la partie
-	 * 
+	 *
 	 * @param frog
 	 */
 	public void setFrog(IFrog frog) {
 		this.frog = frog;
 	}
+	public Case getFrogPos(){return this.frog.getPosition();}
+	public Direction getFrogDir(){return this.frog.getDirection();}
+	public IFrog getFrog(){return this.frog;}
 
 	/**
 	 * Lie l'objet environment a la partie
@@ -89,7 +94,7 @@ public class Game {
 	 * et lance un �cran de fin appropri� si tel est le cas
 	 * 
 	 * @return true si la partie est gagn�e
-	 */
+
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition() )){
 			graphic.endGameScreen("Victory");
@@ -97,7 +102,7 @@ public class Game {
 		}
 		return this.environment.isWinningPosition(this.frog.getPosition());
 
-	}
+	}*/
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
@@ -108,7 +113,7 @@ public class Game {
 		environment.update();
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
 		testLose();
-		testWin();
+		//testWin();
 	}
 
 }

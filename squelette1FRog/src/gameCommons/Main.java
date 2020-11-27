@@ -8,7 +8,7 @@ import javax.swing.Timer;
 
 import environment.Environment;
 import frog.Frog;
-import givenEnvironment.GivenEnvironment;
+import frog.IFrog;
 import graphicalElements.IFroggerGraphics;
 import graphicalElements.FroggerGraphic;
 
