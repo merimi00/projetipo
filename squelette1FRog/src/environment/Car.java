@@ -21,7 +21,7 @@ public class Car {
 		this.game = game;
 		this.leftPosition = new Case(r.nextInt(this.game.width),ordonnee);
 		this.leftToRight = sens;
-		this.length =  r.nextInt( 3);
+		this.length =  r.nextInt( 4);
 		addToGraphics();
 	}
 

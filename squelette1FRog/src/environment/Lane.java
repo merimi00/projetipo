@@ -92,13 +92,19 @@ public class Lane {
 	 * densit�, si la premi�re case de la voie est vide
 	 */
 	private void mayAddCar() {
-		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
+		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase()) && isSafe(getprobelmeCase())){
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}
 		}
 	}
 
+	private Case getprobelmeCase() {
+		if (leftToRight) {
+			return new Case(1, ord);
+		} else
+			return new Case(game.width - 1, ord);
+	}
 	private Case getFirstCase() {
 		if (leftToRight) {
 			return new Case(0, ord);
