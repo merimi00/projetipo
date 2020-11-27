@@ -7,41 +7,54 @@ import gameCommons.Game;
 import gameCommons.IEnvironment;
 
 public class Environment implements IEnvironment {
-    private ArrayList<Lane> road = new ArrayList<>(18);
-    private Game game;
+    //TODO
 
+    //variables
+    protected Game game;
+    protected ArrayList<Lane> lanes = new ArrayList<>();
 
-    public Environment (Game g){
+    //constructor
+    public Environment(Game g){
         this.game = g;
-        for (int i = 0; i < this.game.height; i++){
-            this.road.add(i, new Lane(g, i, ((int) (Math.random() * (10 - this.game.minSpeedInTimerLoops)) + this.game.minSpeedInTimerLoops)));
-        }
+        this.lanes.add(0,new Lane(g));
+        for(int i = 1; i<this.game.height-1;i++){
+            this.lanes.add( new Lane(this.game, i) );}
+        this.lanes.add(this.game.height-1,new Lane(g));
+    }
+    public Environment(){
     }
 
-
-
-    public boolean isSafe(Case c) {
-        for (int i = 0; i < road.size(); i++){
-            if(!road.get(i).isSafe(c)){
-                return false;
-            }
-        }
-        return true;
-
+    //methods
+    /**
+     * Teste si une case est sure, c'est � dire que la grenouille peut s'y poser
+     * sans mourir
+     *
+     * @param c
+     *            la case � tester
+     * @return vrai s'il n'y a pas danger
+     */
+    public boolean isSafe(Case c){
+        //Case a = new Case(c.absc,c.ord+1);
+        return this.lanes.get(c.ord).isSafe(c);
     }
 
-    @Override
-    public boolean isWinningPosition(Case c) {
-        return c.ord == this.game.height - 1;
+    /**
+     * Teste si la case est une case d'arrivee
+     *
+     * @param c
+     * @return vrai si la case est une case de victoire
+     */
+    public boolean isWinningPosition(Case c){
+        if(c.ord == this.game.height-1){return true;}
+        return false;
     }
 
-
-    public void update() {
-        for (Lane lane : this.road) {
-            lane.update();
-        }
+    /**
+     * Effectue une �tape d'actualisation de l'environnement
+     */
+    public void update(){
+        for (Lane l:this.lanes) { l.update(); }
     }
-
 
 
 }

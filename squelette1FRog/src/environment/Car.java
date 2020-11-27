@@ -1,6 +1,7 @@
 package environment;
 
 import java.awt.Color;
+import java.util.Random;
 
 import util.Case;
 import gameCommons.Game;
@@ -15,62 +16,70 @@ public class Car {
 	private final Color colorRtL = Color.BLUE;
 
 	//TODO Constructeur(s)
-	public Car(Game game, Case pos, boolean lTR){
-		this.leftPosition = pos ;
-		this.leftToRight = lTR;
-		this.length = game.randomGen.nextInt(4);
+	public Car(Game game, boolean sens, int ordonnee){
+		Random r = new Random();
 		this.game = game;
+		this.leftPosition = new Case(r.nextInt(this.game.width),ordonnee);
+		this.leftToRight = sens;
+		this.length =  r.nextInt( 3);
 		addToGraphics();
 	}
 
-	public Car (Game game, boolean lTR, int i){
-		this.leftToRight = lTR;
+	/*public Car(Game game, int len, boolean sens){
 		this.game = game;
-		int l;
-		do {
-			l = game.randomGen.nextInt(4);
-		} while (l != 0);
-		this.length = l;
-		Case c;
-		do {
-			c = new Case(game.randomGen.nextInt(this.game.width), i);
-		} while (comparePosCar(c));
+		//
+		this.leftPosition = new Case(0,0);
+		this.leftToRight = sens;
+		this.length = len;
+		addToGraphics();
+	}*/
+	public Car(Game game, Case c, boolean sens){
+		this.game = game;
 		this.leftPosition = c;
+		this.leftToRight = sens;
+		Random r = new Random();
+		this.length =  r.nextInt( 3);
 		addToGraphics();
 	}
 
 	//TODO : ajout de methodes
+	public Case carMove(Case c){
+		return this.leftPosition = c;
+	}
+	public void carMove(){
+		if(this.leftToRight){
+			this.leftPosition = new Case(this.leftPosition.absc+1,this.leftPosition.ord);
 
-	/**
-	 * Fait avancer un véhicule d'une case en fonction de leftToRight
-	 */
-	public void avanceCar(){
-		if (leftToRight){
-			this.leftPosition = new Case(this.leftPosition.absc + 1, this.leftPosition.ord);
-		} else {
-			this.leftPosition = new Case(this.leftPosition.absc - 1, this.leftPosition.ord);
+
+		}else{
+			this.leftPosition = new Case(this.leftPosition.absc-1,this.leftPosition.ord);
+
+
 		}
 	}
-	/**
-	 * Compare une case c avec toutes les cases occupées par le véhicule
-	 * @param c la case à comparer
-	 * @return true si la case c est occupée par le véhicule, false sinon
-	 */
-	public boolean comparePosCar(Case c){
-		//si on part de droite a gauche
-		if(this.leftToRight){
-		for (int i = 0; i < this.length; i++){
-			if ((this.leftPosition.absc + i) == c.absc && this.leftPosition.ord == c.ord){
-				return true;
-			}
-		}}else{for (int i = 0; i < this.length; i++){
-			if ((this.leftPosition.absc - i) == c.absc && this.leftPosition.ord == c.ord){
-				return true;
-			}
-		}}
-		return false;
+
+	public Case getCase(){
+		return this.leftPosition;
 	}
 
+	public int getLength(){return this.length;}
+
+	public boolean lengthPos(Case c){
+		if(this.leftToRight) {
+			for (int i = 0; i < this.length; i++) {
+				if (this.leftPosition.absc - i == c.absc) {
+					return true;
+				}
+			}
+		}else{
+			for (int i = 0; i < this.length; i++) {
+				if (this.leftPosition.absc + i == c.absc) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	public void addToGraphics() {
@@ -79,8 +88,7 @@ public class Car {
 			if (this.leftToRight){
 				color = colorLtR;
 			}
-			game.getGraphic()
-					.add(new Element(leftPosition.absc + i, leftPosition.ord, color));
+			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
 		}
 	}
 
