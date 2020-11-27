@@ -7,7 +7,7 @@ import util.Direction;
 
 public class EnvInf extends Environment {
     //variables
-
+    //hsizeuinzzefpp
     //constructor
     public EnvInf(Game g){
         super();

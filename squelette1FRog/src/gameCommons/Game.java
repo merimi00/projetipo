@@ -12,7 +12,7 @@ import util.Direction;
 public class Game {
 
 	public final Random randomGen = new Random();
-
+	//hsizeuinzzefpp
 	// Caracteristique de la partie
 	public final int width;
 	public final int height;
