@@ -8,12 +8,12 @@ import gameCommons.Game;
 import graphicalElements.Element;
 
 public class Car {
-	private Game game;
-	private Case leftPosition;
-	private boolean leftToRight;
-	private int length;
-	private final Color colorLtR = Color.BLACK;
-	private final Color colorRtL = Color.BLUE;
+	protected Game game;
+	protected Case leftPosition;
+	protected boolean leftToRight;
+	protected int length;
+	protected final Color colorLtR = Color.BLACK;
+	protected final Color colorRtL = Color.BLUE;
 
 	//TODO Constructeur(s)
 	public Car(Game game, boolean sens, int ordonnee){

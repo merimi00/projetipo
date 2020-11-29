@@ -10,12 +10,12 @@ import util.Case;
 import gameCommons.Game;
 
 public class Lane {
-	private Game game;
-	private int ord;
-	private int speed;
-	private ArrayList<Car> cars = new ArrayList<>();
-	private boolean leftToRight;
-	private double density;
+	protected Game game;
+	protected int ord;
+	protected int speed;
+	protected ArrayList<Car> cars = new ArrayList<>();
+	protected boolean leftToRight;
+	protected double density;
 
 	// TODO : Constructeur(s)
 	//game, sens, vitesse, numero de route,
@@ -67,9 +67,9 @@ public class Lane {
 			time=0;}
 		time++;
 		this.mayAddCar();
-		for (Car car : this.cars) {
-			car.addToGraphics();
-		}
+		//for (Car car : this.cars) {
+			//car.addToGraphics();
+		//}
 	}
 
 	// TODO : ajout de methodes

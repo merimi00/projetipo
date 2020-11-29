@@ -2,7 +2,7 @@ package graphicalElements;
 
 import javax.swing.*;
 
-import frog.IFrog;
+import gameCommons.IFrog;
 import util.Direction;
 
 import java.awt.*;

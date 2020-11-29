@@ -1,6 +1,6 @@
 package graphicalElements;
 
-import frog.IFrog;
+import gameCommons.IFrog;
 
 public interface IFroggerGraphics {
 	

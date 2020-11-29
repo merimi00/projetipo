@@ -3,7 +3,6 @@ package gameCommons;
 import java.awt.Color;
 import java.util.Random;
 
-import frog.IFrog;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 import util.Case;
@@ -12,7 +11,6 @@ import util.Direction;
 public class Game {
 
 	public final Random randomGen = new Random();
-	//hsizeuinzzefpp
 	// Caracteristique de la partie
 	public final int width;
 	public final int height;
@@ -25,7 +23,7 @@ public class Game {
 	private IFroggerGraphics graphic;
 
 	/**
-	 * 
+	 *
 	 * @param graphic
 	 *            l'interface graphique
 	 * @param width
@@ -60,7 +58,7 @@ public class Game {
 
 	/**
 	 * Lie l'objet environment a la partie
-	 * 
+	 *
 	 * @param environment
 	 */
 	public void setEnvironment(IEnvironment environment) {
@@ -68,7 +66,7 @@ public class Game {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return l'interface graphique
 	 */
 	public IFroggerGraphics getGraphic() {
@@ -78,7 +76,7 @@ public class Game {
 	/**
 	 * Teste si la partie est perdue
 	 * et lance un �cran de fin appropri� si tel est le cas
-	 * 
+	 *
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
@@ -92,15 +90,15 @@ public class Game {
 	/**
 	 * Teste si la partie est gagnee
 	 * et lance un �cran de fin appropri� si tel est le cas
-	 * 
+	 *
 	 * @return true si la partie est gagn�e
 
 	public boolean testWin() {
-		if (environment.isWinningPosition(frog.getPosition() )){
-			graphic.endGameScreen("Victory");
-			return true;
-		}
-		return this.environment.isWinningPosition(this.frog.getPosition());
+	if (environment.isWinningPosition(frog.getPosition() )){
+	graphic.endGameScreen("Victory");
+	return true;
+	}
+	return this.environment.isWinningPosition(this.frog.getPosition());
 
 	}*/
 
@@ -111,7 +109,7 @@ public class Game {
 	public void update() {
 		graphic.clear();
 		environment.update();
-		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
 		testLose();
 		//testWin();
 	}

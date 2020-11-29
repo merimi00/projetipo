@@ -1,4 +1,4 @@
-package frog;
+package gameCommons;
 
 import util.Case;
 import util.Direction;

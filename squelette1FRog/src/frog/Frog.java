@@ -1,13 +1,14 @@
 package frog;
 
 import gameCommons.Game;
+import gameCommons.IFrog;
 import util.Case;
 import util.Direction;
 
 public class Frog implements IFrog {
-	private Game game;
-	private Case pos;
-	private Direction dir;
+	protected Game game;
+	protected Case pos;
+	protected Direction dir;
 
 	public Frog(Game game){
 		this.dir = Direction.up;

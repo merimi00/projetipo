@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import util.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
+import util.Direction;
 
 public class Environment implements IEnvironment {
     //TODO
@@ -44,16 +45,18 @@ public class Environment implements IEnvironment {
      * @param c
      * @return vrai si la case est une case de victoire
      */
-    public boolean isWinningPosition(Case c){
-        if(c.ord == this.game.height-1){return true;}
-        return false;
-    }
+    //public boolean isWinningPosition(Case c){
+       // if(c.ord == this.game.height-1){return true;}
+       // return false;
+    //}
 
     /**
      * Effectue une �tape d'actualisation de l'environnement
      */
     public void update(){
-        for (Lane l:this.lanes) { l.update(); }
+       for (Lane l : lanes){
+           l.update();
+       }
     }
 
 
