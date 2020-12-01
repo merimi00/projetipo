@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import util.Case;
 import gameCommons.Game;
 import gameCommons.IEnvironment;
-import util.Direction;
 
 public class Environment implements IEnvironment {
-    //TODO
 
     //variables
     protected Game game;
@@ -58,6 +56,5 @@ public class Environment implements IEnvironment {
            l.update();
        }
     }
-
 
 }

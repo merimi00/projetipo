@@ -10,6 +10,7 @@ import util.Case;
 import gameCommons.Game;
 
 public class Lane {
+	//variables
 	protected Game game;
 	protected int ord;
 	protected int speed;
@@ -17,9 +18,7 @@ public class Lane {
 	protected boolean leftToRight;
 	protected double density;
 
-	// TODO : Constructeur(s)
-	//game, sens, vitesse, numero de route,
-	//changer pour mayadd car
+	//constructors
 	public Lane(Game g, int ordonee){
 		this.game = g;
 		this.ord = ordonee;
@@ -39,48 +38,40 @@ public class Lane {
 		this.leftToRight = false;
 		this.density = 0;
 	}
-	/*public Lane(Game g, int ordonee, boolean a){
-		this.game = g;
-		this.ord = ordonee;
-		Random r = new Random();
-		this.speed = r.nextInt(10);//this.game.minSpeedInTimerLoops);
-		this.leftToRight = r.nextBoolean();
-	}*/
+
+	//methods
+	/** methode qui permet de mettre met à jour l'affichage
+	 * @param
+	 * @return
+	 **/
 	int time = 0;
 	public void update() {
-		// TODO
-		// Toutes les voitures se d�placent d'une case au bout d'un nombre "tic d'horloge" égal à leur vitesse
-		// Notez que cette méthode est appelée à chaque tic d'horloge
-		// Les voitures doivent etre ajoutes a l interface graphique meme quand elle ne bougent pas
-		// A chaque tic d'horloge, une voiture peut etre ajoutée
-		/*int i = 0;
-		Timer timer = new Timer(this.speed,new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEven;t e) {game.getGraphic().add(cars.get(i));i++;}});
-		timer.start();
-		//this.game.getGraphic().add(this.cars[i])
-		mayAddCar();*/
-
 		if(time == this.speed){
 			for (int i = 0; i < this.cars.size(); i++) {
 				this.cars.get(i).carMove();}
 			time=0;}
 		time++;
 		this.mayAddCar();
-		//for (Car car : this.cars) {
-			//car.addToGraphics();
-		//}
+		/**for (Car car : this.cars) {car.addToGraphics();}**/
 	}
 
-	// TODO : ajout de methodes
+	/** methode qui s'assure qu'on est sur une Case sans "danger"/voiture
+	 * @param_Case
+	 * @return boolean
+	 **/
 	public boolean isSafe(Case position){
 		//Case a = new Case(position.absc,position.ord+1);
 		for (Car i : this.cars) {
-			if(i.lengthPos(position)){return false;}
+			if(i.lengthPos(position)){
+				return false;}
 		}
 		return true;
 	}
 
+	/** methode qui renvoie l'ordonee de cette route
+	 * @param
+	 * @return int
+	 **/
 	public int getOrd(){return this.ord;}
 
 	/*
@@ -88,18 +79,18 @@ public class Lane {
 	 */
 
 	/**
-	 * Ajoute une voiture au d�but de la voie avec probabilit� �gale � la
-	 * densit�, si la premi�re case de la voie est vide
+	 * Ajoute une voiture au d�but de la voie avec probabilité égale à la
+	 * densité, si la première case de la voie est vide
 	 */
 	private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())
-			/*&& isSafe(getprobelmeCase()) && isSafe(getprobelme2Case())*/){
+			&& isSafe(getprobelmeCase()) && isSafe(getprobelme2Case())){
 			if (game.randomGen.nextDouble() < density) {
 				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
 			}
 		}
 	}
-	/*private Case getprobelme2Case() {
+	private Case getprobelme2Case() {
 		if (leftToRight) {
 			return new Case(2, ord);
 		} else
@@ -110,7 +101,7 @@ public class Lane {
 			return new Case(1, ord);
 		} else
 			return new Case(game.width - 2, ord);
-	}*/
+	}
 	private Case getFirstCase() {
 		if (leftToRight) {
 			return new Case(0, ord);

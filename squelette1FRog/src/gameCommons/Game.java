@@ -32,7 +32,7 @@ public class Game {
 	 * @param height
 	 *            hauteur en cases
 	 * @param minSpeedInTimerLoop
-	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
+	 *            Vitesse minimale, en nombre de tour de timer avant déplacement
 	 * @param defaultDensity
 	 *            densite de voiture utilisee par defaut pour les routes
 	 */
@@ -47,7 +47,7 @@ public class Game {
 	}
 
 	/**
-	 * Lie l'objet frog � la partie
+	 * Lie l'objet frog à la partie
 	 *
 	 * @param frog
 	 */
@@ -77,13 +77,13 @@ public class Game {
 
 	/**
 	 * Teste si la partie est perdue
-	 * et lance un �cran de fin appropri� si tel est le cas
+	 * et lance un écran de fin approprié si tel est le cas
 	 *
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("Défaite, votre score: " + this.score );
+			graphic.endGameScreen("Défaite, votre score: " + this.frog.getPosition().ord );
 			return true;
 		}
 		return this.environment.isSafe(this.frog.getPosition());
@@ -91,9 +91,9 @@ public class Game {
 
 	/**
 	 * Teste si la partie est gagnee
-	 * et lance un �cran de fin appropri� si tel est le cas
+	 * et lance un écran de fin approprié si tel est le cas
 	 *
-	 * @return true si la partie est gagn�e
+	 * @return true si la partie est gagnée
 
 	public boolean testWin() {
 	if (environment.isWinningPosition(frog.getPosition() )){
