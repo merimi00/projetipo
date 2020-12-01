@@ -16,6 +16,7 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
+	public int score;
 
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
@@ -42,6 +43,7 @@ public class Game {
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.score = 0;
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class Game {
 	 */
 	public boolean testLose() {
 		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("Defeat");
+			graphic.endGameScreen("Défaite, votre score: " + this.score );
 			return true;
 		}
 		return this.environment.isSafe(this.frog.getPosition());

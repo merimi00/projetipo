@@ -56,6 +56,7 @@ public class EnvInf extends Environment {
                     affiche.get(i).cars.get(j).leftPosition.ord = i;
                 }
             }
+            this.game.score ++;
         }
         for (Lane l : lanes) {
             l.update();

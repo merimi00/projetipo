@@ -43,18 +43,11 @@ public class Car {
 	}
 
 	//TODO : ajout de methodes
-	public Case carMove(Case c){
-		return this.leftPosition = c;
-	}
 	public void carMove(){
 		if(this.leftToRight){
 			this.leftPosition = new Case(this.leftPosition.absc+1,this.leftPosition.ord);
-
-
 		}else{
 			this.leftPosition = new Case(this.leftPosition.absc-1,this.leftPosition.ord);
-
-
 		}
 	}
 
