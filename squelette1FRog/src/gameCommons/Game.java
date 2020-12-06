@@ -1,7 +1,10 @@
 package gameCommons;
 
 import java.awt.Color;
+import java.util.Date;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
@@ -75,6 +78,18 @@ public class Game {
 		return graphic;
 	}
 
+	//la partie 4
+		Timer t0 = new Timer();
+		int second = 0;
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				second ++;
+				System.out.println(second);
+			}
+		};
+
+
 	/**
 	 * Teste si la partie est perdue
 	 * et lance un écran de fin approprié si tel est le cas
@@ -82,8 +97,10 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
+
 		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("Défaite, votre score: " + this.frog.getPosition().ord );
+			graphic.endGameScreen("Défaite, votre score: " +
+					this.frog.getPosition().ord + " et votre temps de "+ second);
 			return true;
 		}
 		return this.environment.isSafe(this.frog.getPosition());
@@ -108,7 +125,13 @@ public class Game {
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
 	 * partie.
 	 */
+
+
 	public void update() {
+
+		//1000 milisecondes
+		t0.scheduleAtFixedRate(task, 1000,1000);
+
 		graphic.clear();
 		environment.update();
 		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
