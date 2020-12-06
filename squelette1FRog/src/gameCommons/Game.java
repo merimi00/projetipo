@@ -21,6 +21,7 @@ public class Game {
 	public final double defaultDensity;
 	public int score;
 
+
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
 	private IFrog frog;
@@ -79,15 +80,18 @@ public class Game {
 	}
 
 	//la partie 4
-		Timer t0 = new Timer();
+	Timer t0 = new Timer();
 		int second = 0;
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
 				second ++;
-				System.out.println(second);
 			}
 		};
+
+		public void tim() {
+			t0.scheduleAtFixedRate(task, 1000, 1000);
+		}
 
 
 	/**
@@ -101,6 +105,7 @@ public class Game {
 		if (!environment.isSafe(frog.getPosition())) {
 			graphic.endGameScreen("Défaite, votre score: " +
 					this.frog.getPosition().ord + " et votre temps de "+ second);
+			t0.cancel();
 			return true;
 		}
 		return this.environment.isSafe(this.frog.getPosition());
@@ -111,15 +116,16 @@ public class Game {
 	 * et lance un écran de fin approprié si tel est le cas
 	 *
 	 * @return true si la partie est gagnée
+	 **/
 
 	public boolean testWin() {
-	if (environment.isWinningPosition(frog.getPosition() )){
-	graphic.endGameScreen("Victory");
-	return true;
-	}
-	return this.environment.isWinningPosition(this.frog.getPosition());
+		if (environment.isWinningPosition(frog.getPosition() )){
+			graphic.endGameScreen("Victory");
+			return true;
+		}
+		return this.environment.isWinningPosition(this.frog.getPosition());
 
-	}*/
+	}
 
 	/**
 	 * Actualise l'environnement, affiche la grenouille et verifie la fin de
@@ -128,15 +134,18 @@ public class Game {
 
 
 	public void update() {
-
-		//1000 milisecondes
-		t0.scheduleAtFixedRate(task, 1000,1000);
-
 		graphic.clear();
 		environment.update();
 		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
 		testLose();
-		//testWin();
+		testWin();
+	}
+
+	public void updateInf(){
+		graphic.clear();
+		environment.update();
+		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
+		testLose();
 	}
 
 }

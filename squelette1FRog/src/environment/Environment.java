@@ -43,18 +43,21 @@ public class Environment implements IEnvironment {
      * @param c
      * @return vrai si la case est une case de victoire
      */
-    //public boolean isWinningPosition(Case c){
-       // if(c.ord == this.game.height-1){return true;}
-       // return false;
-    //}
+    public boolean isWinningPosition(Case c){
+       if(c.ord == this.game.height-1){return true;}
+       return false;
+    }
 
     /**
      * Effectue une �tape d'actualisation de l'environnement
      */
     public void update(){
-       for (Lane l : lanes){
-           l.update();
-       }
+        for (int i = 0; i < lanes.size(); i++){
+            lanes.get(i).update();
+            for (int j = 0; j < lanes.get(i).cars.size(); j++){
+                lanes.get(i).cars.get(j).addToGraphics();
+            }
+        }
     }
 
 }
