@@ -22,6 +22,7 @@ public class Game {
 	public int score;
 
 
+
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
 	private IFrog frog;
@@ -94,6 +95,7 @@ public class Game {
 		}
 
 
+
 	/**
 	 * Teste si la partie est perdue
 	 * et lance un écran de fin approprié si tel est le cas
@@ -120,7 +122,8 @@ public class Game {
 
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition() )){
-			graphic.endGameScreen("Victory");
+			graphic.endGameScreen("Victoire, votre temps est de :" + second);
+			t0.cancel();
 			return true;
 		}
 		return this.environment.isWinningPosition(this.frog.getPosition());
@@ -136,7 +139,7 @@ public class Game {
 	public void update() {
 		graphic.clear();
 		environment.update();
-		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
+		this.graphic.add(new Element(this.getFrogPos(), Color.GREEN));
 		testLose();
 		testWin();
 	}
