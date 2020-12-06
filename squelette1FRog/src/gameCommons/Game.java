@@ -21,6 +21,8 @@ public class Game {
 	public final double defaultDensity;
 	public int score;
 
+	public long t0 = System.currentTimeMillis();
+
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
 	private IFrog frog;
@@ -74,21 +76,7 @@ public class Game {
 	 *
 	 * @return l'interface graphique
 	 */
-	public IFroggerGraphics getGraphic() {
-		return graphic;
-	}
-
-	//la partie 4
-		Timer t0 = new Timer();
-		int second = 0;
-		TimerTask task = new TimerTask() {
-			@Override
-			public void run() {
-				second ++;
-				System.out.println(second);
-			}
-		};
-
+	public IFroggerGraphics getGraphic() { return graphic; }
 
 	/**
 	 * Teste si la partie est perdue
@@ -97,10 +85,11 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-
+		long t1 = System.currentTimeMillis();
 		if (!environment.isSafe(frog.getPosition())) {
 			graphic.endGameScreen("Défaite, votre score: " +
-					this.frog.getPosition().ord + " et votre temps de "+ second);
+					this.frog.getPosition().ord + " et votre temps de "+
+					/*second; */ ((t1-t0)/1000));
 			return true;
 		}
 		return this.environment.isSafe(this.frog.getPosition());
@@ -127,11 +116,7 @@ public class Game {
 	 */
 
 
-	public void update() {
-
-		//1000 milisecondes
-		t0.scheduleAtFixedRate(task, 1000,1000);
-
+	public void update(){
 		graphic.clear();
 		environment.update();
 		this.graphic.add(new Element(this.frog.getPosition().absc, 0, Color.GREEN));
